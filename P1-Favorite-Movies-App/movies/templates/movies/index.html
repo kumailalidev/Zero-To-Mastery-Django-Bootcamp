@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Favorites Movies</title>
-  </head>
-  <body>
-    <h1>My Fav Movies</h1>
-    {% if movies %}
+{% extends 'movies/_base.html' %}
+
+{% block title %} My Favorite Movies App {% endblock %}
+
+{% block content %}
+<h1>My Fav Movies</h1>
+{% if movies %}
     <ul>
-      {% for movie in movies %}
-      <li>{{ movie | title }}</li>
-      {% endfor %}
+    {% for movie in movies %}
+        <li>{{ movie | title }}</li>
+    {% endfor %}
     </ul>
-    {% else %}
+{% else %}
     <p>No favorite movies...</p>
-    {% endif %}
-  </body>
-</html>
+{% endif %}
+
+{% endblock %}
