@@ -1,5 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import JobPosting
 
 # Create your views here.
@@ -14,7 +13,7 @@ def index(request):
 
 
 def job_detail(request, pk):
-    job_posting = JobPosting.objects.get(pk=pk)
+    job_posting = get_object_or_404(JobPosting, pk=pk, is_active=True)
     context = {
         "posting": job_posting,
     }
