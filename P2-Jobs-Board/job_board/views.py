@@ -6,7 +6,8 @@ from .models import JobPosting
 
 
 def index(request):
-    # jobs = JobPosting.objects.all()
-    jobs = JobPosting.objects.filter(is_active=True)
-    print(jobs)
-    return HttpResponse("Job Board")
+    active_postings = JobPosting.objects.filter(is_active=True)
+    context = {
+        "job_postings": active_postings,
+    }
+    return render(request, "job_board/index.html", context)
