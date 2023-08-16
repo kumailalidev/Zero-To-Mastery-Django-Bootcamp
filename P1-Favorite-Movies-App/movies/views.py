@@ -4,7 +4,14 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, "movies/index.html", {"movie": "gladiator"})
+    context = {
+        "movies": [
+            "gladiator",
+            "top gun",
+            "casino",
+        ]
+    }
+    return render(request, "movies/index.html", context)
 
 
 def about(request):

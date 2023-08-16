@@ -7,6 +7,14 @@
   </head>
   <body>
     <h1>My Fav Movies</h1>
-    {{ movie | title }}
+    {% if movies %}
+    <ul>
+      {% for movie in movies %}
+      <li>{{ movie | title }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No favorite movies...</p>
+    {% endif %}
   </body>
 </html>
