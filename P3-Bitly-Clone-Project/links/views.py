@@ -15,3 +15,7 @@ def root_link(request, link_slug):
     link = get_object_or_404(Link, slug=link_slug)
     link.click()  # increments click
     return redirect(link.url)
+
+
+def add_link(request):
+    return render(request, "links/create.html", {})
