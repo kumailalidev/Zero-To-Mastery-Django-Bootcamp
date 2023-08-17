@@ -1,7 +1,8 @@
+from .models import Link
 from django import forms
 
 
-class LinkForm(forms.Form):
-    name = forms.CharField(max_length=50)
-    url = forms.URLField(max_length=200)
-    slug = forms.SlugField(required=False)
+class LinkForm(forms.ModelForm):  # form associated with model.
+    class Meta:
+        model = Link
+        fields = ["name", "url", "slug"]
