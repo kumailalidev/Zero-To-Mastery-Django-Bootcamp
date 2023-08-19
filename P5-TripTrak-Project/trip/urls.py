@@ -12,4 +12,5 @@ urlpatterns = [
         "dashboard/note/<int:pk>/", views.NoteDetailView.as_view(), name="note-detail"
     ),
     path("dashboard/note/", views.NoteListView.as_view(), name="note-list"),
+    path("dashboard/note/create", views.NoteCreateView.as_view(), name="note-create"),
 ]
