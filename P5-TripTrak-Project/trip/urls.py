@@ -13,4 +13,14 @@ urlpatterns = [
     ),
     path("dashboard/note/", views.NoteListView.as_view(), name="note-list"),
     path("dashboard/note/create", views.NoteCreateView.as_view(), name="note-create"),
+    path(
+        "dashboard/note/<int:pk>/update",
+        views.NoteUpdateView.as_view(),
+        name="note-update",
+    ),
+    path(
+        "dashboard/note/<int:pk>/delete",
+        views.NoteDeleteView.as_view(),
+        name="note-delete",
+    ),
 ]

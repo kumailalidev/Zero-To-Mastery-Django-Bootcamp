@@ -2,7 +2,14 @@ from typing import Any, Dict
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.views.generic import (
+    TemplateView,
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    DeleteView,
+)
 from .models import Trip, Note
 
 
@@ -72,3 +79,24 @@ class NoteCreateView(CreateView):
         trips = Trip.objects.filter(owner=self.request.user)
         form.fields["trip"].queryset = trips
         return form
+
+
+class NoteUpdateView(UpdateView):
+    model = Note
+    success_url = reverse_lazy("note-list")
+    fields = "__all__"
+    # template => model_form.html : note_form.html; Uses same template for creating note
+
+    # Overriding get_form to avoid updating note for all trips present in database
+    # Only logged in user trips should be visible
+    def get_form(self):
+        form = super(NoteUpdateView, self).get_form()
+        trips = Trip.objects.filter(owner=self.request.user)
+        form.fields["trip"].queryset = trips
+        return form
+
+
+class NoteDeleteView(DeleteView):
+    model = Note
+    success_url = reverse_lazy("note-list")
+    # No template needed - Send a POST request to url.
