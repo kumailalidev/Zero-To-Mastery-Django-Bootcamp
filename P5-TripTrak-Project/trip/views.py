@@ -1,6 +1,7 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from .models import Trip, Note
 
 
@@ -26,3 +27,17 @@ class TripCreateView(CreateView):
         # adding owner field and setting value a logged in user
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+
+class TripDetailView(DetailView):
+    model = Trip
+    # template => model_detail.html : trip_detail.html
+
+    # Updating context variable so that it also have Notes model information
+    # Overriding default behavior get_context_data
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trip = context["object"]
+        notes = trip.notes.all()
+        context["notes"] = notes
+        return context
