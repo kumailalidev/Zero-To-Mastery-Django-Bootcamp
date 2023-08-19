@@ -41,3 +41,8 @@ class TripDetailView(DetailView):
         notes = trip.notes.all()
         context["notes"] = notes
         return context
+
+
+class NoteDetailView(DetailView):
+    model = Note
+    # template => model_detail.html : note_detail.html

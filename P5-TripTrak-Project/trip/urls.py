@@ -8,4 +8,7 @@ urlpatterns = [
     path(
         "dashboard/trip/<int:pk>/", views.TripDetailView.as_view(), name="trip-detail"
     ),
+    path(
+        "dashboard/note/<int:pk>/", views.NoteDetailView.as_view(), name="note-detail"
+    ),
 ]
