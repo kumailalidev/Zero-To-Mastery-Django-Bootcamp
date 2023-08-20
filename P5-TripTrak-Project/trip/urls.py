@@ -23,4 +23,14 @@ urlpatterns = [
         views.NoteDeleteView.as_view(),
         name="note-delete",
     ),
+    path(
+        "dashboard/trip/<int:pk>/update",
+        views.TripUpdateView.as_view(),
+        name="trip-update",
+    ),
+    path(
+        "dashboard/trip/<int:pk>/delete",
+        views.TripDeleteView.as_view(),
+        name="trip-delete",
+    ),
 ]
